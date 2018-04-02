@@ -26,3 +26,30 @@ with open('calls.csv', 'r') as f:
 电话号码不能重复，每行打印一条，按字典顺序排序后输出。
 """
 
+
+textSet = set()
+with open('texts.csv', 'r') as file:
+    reader = csv.reader(file)
+    texts = list(reader)
+    for text in texts:
+        income = text[0]
+        ans = text[1]
+        textSet.add(income)
+        textSet.add(ans)
+
+incomeSet = set()
+ansSet = set()
+with open('calls.csv', 'r') as file:
+    reader = csv.reader(file)
+    calls = list(reader)
+    for call in calls:
+        income = call[0]
+        ans = call[1]
+        incomeSet.add(income)
+        ansSet.add(ans)
+
+resSet = list(incomeSet - ansSet - textSet)
+list.sort(resSet)
+print("These numbers could be telemarketers: ")
+for num in resSet:
+    print(num)
