@@ -39,3 +39,33 @@ with open('calls.csv', 'r') as f:
 to other fixed lines in Bangalore."
 注意：百分比应包含2位小数。
 """
+codes = set()
+with open('calls.csv', 'r') as file:
+    reader = csv.reader(file)
+    calls = list(reader)
+    
+    bangalIn = 0
+    bangalAns = 0
+    for call in calls:
+        incom = call[0]
+        ans = call[1]
+        bangal = '(080)'
+        if bangal in incom:
+            bangalIn += 1
+            if ans[0] == '(':
+                if bangal in ans:
+                    bangalAns += 1
+                code = ans[1:4]
+                codes.add(code)
+            elif ans[0] <= '9' and ans[0] >= '7':
+                code = ans[0:4]
+                codes.add(code)
+    codes = list(codes)
+    list.sort(codes)
+    print('The numbers called by people in Bangalore have codes:')
+    for code in codes:
+        print(code)
+    
+    percentage = bangalAns / bangalIn
+    print('%.2f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' %percentage)
+
