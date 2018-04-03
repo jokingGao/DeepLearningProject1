@@ -66,6 +66,5 @@ with open('calls.csv', 'r') as file:
     for code in codes:
         print(code)
     
-    percentage = bangalAns / bangalIn
-    print('%.2f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' %percentage)
-
+    percentage = bangalAns / bangalIn * 100
+    print('%.2f%% percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.' %percentage)
